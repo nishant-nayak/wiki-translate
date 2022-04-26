@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Project
+
+def index(request):
+    return render(request, 'translate/input-title.html', {
+        "langs": Project.LANGUAGE_CHOICES
+    })

@@ -1,0 +1,42 @@
+{% extends 'translate/layout.html' %}
+
+{% block body %}
+<div class="container">
+    <section class="min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container row justify-content-center col-lg-4 col-md-6 d-flex flex-column align-items-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="py-2">
+                        <h5 class="card-title text-center pb-0 fs-4">WikiTranslate</h5>
+                        <p class="text-center small">Enter the <strong>article title</strong> and the <strong>target language</strong></p>
+                    </div>
+
+                    <form action="#" method="post" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <label for="inputTitle" class="form-label">Article Title</label>
+                            <div class="input-group">
+                                <input type="text" name="article-title" class="form-control" id="inputTitle" placeholder="Enter Title Here" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputLang" class="form-label">Target Language</label>
+                            <select class="form-select" name="target-lang">
+                                {% for lang in langs %}
+                                <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock body %}
