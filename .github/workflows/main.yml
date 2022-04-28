@@ -29,3 +29,4 @@ jobs:
           app_name: "wikitranslate-nishant"
           email: "nishantnayak2001@gmail.com"
           heroku_branch: "heroku"
+          subfolder: ""
