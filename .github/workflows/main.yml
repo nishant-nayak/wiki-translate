@@ -33,4 +33,6 @@ jobs:
       - name: Heroku Deployment
         run: |
           heroku git:remote -a wikitranslate-nishant
-          git push heroku heroku:main -f
+          git branch -a
+          git checkout heroku
+          git push heroku heroku:main
