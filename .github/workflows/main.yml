@@ -22,12 +22,11 @@ jobs:
           target_branch: heroku
           github_token: ${{ github.token }}
 
-      - name: Deploy to Heroku
-        uses: AkhileshNS/heroku-deploy@v3.12.12
+      - name: Heroku Action
+        uses: CDNievas/heroku-action@v1.0
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "wikitranslate-nishant"
           heroku_email: "nishantnayak2001@gmail.com"
           branch: "heroku"
-          remote_branch: "master"
           procfile: "web: gunicorn wikitranslate.wsgi"
