@@ -1,0 +1,71 @@
+{% extends 'translate/layout.html' %}
+{% load static %}
+
+{% block title %}Register | WikiTranslate{% endblock %}
+
+{% block body %}
+<div class="container">
+    <section class="min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container row justify-content-center col-lg-4 col-md-6 d-flex flex-column align-items-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    {% if error %}
+                    <div class="alert alert-danger alert-dismissible fade show mt-3 mb-0" role="alert">
+                        {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+
+                    <div class="py-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Register New Account</h5>
+                    </div>
+
+                    <form action="{% url 'register' %}" method="post" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required autofocus>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="yourUsername" class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Username" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="yourPassword" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Password" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="yourPassword" class="form-label">Confirm Password</label>
+                            <input type="password" name="confirmation" class="form-control" id="yourPassword" placeholder="Confirm Password" required>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit">Register</button>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p class="small mt-2">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

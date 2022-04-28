@@ -1,0 +1,29 @@
+{% extends 'translate/layout.html' %}
+
+{% block title %}Dashboard | WikiTranslate{% endblock %}
+
+{% block body %}
+<h1 class="text-center display-1">Dashboard</h1>
+
+<div class="container">
+    <table class="table table-striped table-hover table-bordered col-md-6">
+        <thead>
+            <tr>
+                <th scope="col">Available Projects</th>
+            </tr>
+        </thead>
+        {% for project in projects %}
+            <tr>
+                <td><a href="{% url 'annotate' project.id %}">{{ project.get_language_display }}_{{ project.title }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'input_title' %}" class="btn btn-primary">
+        Create a new Project
+    </a>
+</div>
+
+{% endblock %}

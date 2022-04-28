@@ -11,7 +11,7 @@
                         <p class="text-center small">Enter the <strong>article title</strong> and the <strong>target language</strong></p>
                     </div>
 
-                    <form action="#" method="post" class="row g-3">
+                    <form action="{% url 'input_title' %}" method="post" class="row g-3">
                         {% csrf_token %}
                         <div class="col-12">
                             <label for="inputTitle" class="form-label">Article Title</label>
