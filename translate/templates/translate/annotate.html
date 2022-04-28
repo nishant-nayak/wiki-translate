@@ -2,34 +2,21 @@
 
 {% block body %}
 <div class="text-center display-2 my-5">{{ project.title }} - English to {{ target_lang }}</div>
-<div class="container gx-3">
-    <div class="row justify-content-center align-items-stretch">
-        <div class="card mb-3 col-md-6">
-            <div class="card-body">
-                <div class="py-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Original Text</h5>
+<div class="container">
+    <form id="annotate-form" action="{% url 'annotate' project.id %}" method="post" class="gx-3">
+        {% csrf_token %}
+        {% for sentence in sentences %}
+            <div class="row align-items-stretch">
+                <div class="col-md-6 align-items-center">
+                    <p class="card-text">{{ sentence.original_sentence }}</p>
                 </div>
-                {% for orig_sentence in sentences %}
-                    <p class="card-text">{{ orig_sentence.original_sentence }}</p>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="card mb-3 col-6">
-            <div class="card-body">
-                <div class="py-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Text to Translate</h5>
+                <div class="col-md-6 align-items-center">
+                    <input type="textarea" style="height:100%; "class="form-control" id="{{ sentence.id }}" name="{{ sentence.id }}" placeholder="Enter translation" value="{{ sentence.translated_sentence | default_if_none:'' }}">
                 </div>
-                <form id="annotate-form" action="{% url 'annotate' project.id %}" method="post" class="gx-3">
-                    {% csrf_token %}
-                    {% for sentence in sentences %}
-                        <div class="form-group py-1">
-                            <input type="textarea" class="form-control" id="{{ sentence.id }}" name="{{ sentence.id }}" placeholder="Enter translation" value="{{ sentence.translated_sentence | default_if_none:'' }}">
-                        </div>
-                    {% endfor %}
-                </form>
             </div>
-        </div>
-    </div>
+            <hr>
+        {% endfor %}
+    </form>
 </div>
 
 <div class="text-center mb-5">
