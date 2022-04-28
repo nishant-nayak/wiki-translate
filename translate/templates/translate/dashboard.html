@@ -5,6 +5,7 @@
 {% block body %}
 <h1 class="text-center display-1">Dashboard</h1>
 
+{% if projects %}
 <div class="container">
     <table class="table table-striped table-hover table-bordered col-md-6">
         <thead>
@@ -19,6 +20,9 @@
         {% endfor %}
     </table>
 </div>
+{% else %}
+    <p class="text-center">No projects available ...yet!</p>
+{% endif %}
 
 <div class="text-center">
     <a href="{% url 'input_title' %}" class="btn btn-primary">

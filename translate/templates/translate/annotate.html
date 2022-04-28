@@ -23,7 +23,7 @@
                     {% csrf_token %}
                     {% for sentence in sentences %}
                         <div class="form-group py-1">
-                            <input type="textarea" class="form-control" id="{{ sentence.id }}" name="{{ sentence.id }}" placeholder="Enter translation">
+                            <input type="textarea" class="form-control" id="{{ sentence.id }}" name="{{ sentence.id }}" placeholder="Enter translation" value="{{ sentence.translated_sentence | default_if_none:'' }}">
                         </div>
                     {% endfor %}
                 </form>
