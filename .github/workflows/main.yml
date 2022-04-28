@@ -22,11 +22,9 @@ jobs:
           target_branch: heroku
           github_token: ${{ github.token }}
 
-      - name: Git deploy to Heroku
-        uses: onekiloparsec/heroku-node-deploy-subfolder@v1.1.0
+      - name: Heroku Deployment
+        uses: ElayGelbart/Heroku-Auto-Deployment@v1.0.6
         with:
-          api_key: ${{ secrets.HEROKU_API_KEY }}
-          app_name: "wikitranslate-nishant"
-          email: "nishantnayak2001@gmail.com"
-          heroku_branch: "heroku"
-          subfolder: ""
+          herokuApiKey: ${{ secrets.HEROKU_API_KEY }}
+          herokuAppName: "wikitranslate-nishant"
+          branch: "heroku"
