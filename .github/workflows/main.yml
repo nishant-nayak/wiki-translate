@@ -1,0 +1,32 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build:
+    name: "Deploy app to Heroku"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Merge 'main' into 'heroku'
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          from_branch: main
+          target_branch: heroku
+          github_token: ${{ github.token }}
+
+      - name: Deploy to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "wikitranslate-nishant"
+          heroku_email: "nishantnayak2001@gmail.com"
+          branch: "heroku"
+          procfile: "web: gunicorn wikitranslate.wsgi"
