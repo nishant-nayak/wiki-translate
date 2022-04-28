@@ -1,6 +1,8 @@
 # WikiTranslate
 
-A Django-based application that helps with translating Wikipedia articles from English to a variety of Indian Languages
+A Django-based application that helps with translating Wikipedia articles from English to a variety of Indian Languages.
+
+The application is deployed on Heroku, and is part of a CD pipeline using [GitHub Actions](https://github.com/nishant-nayak/wiki-translate/actions). The deployed site can be found at [https://wikitranslate-nishant.herokuapp.com/](https://wikitranslate-nishant.herokuapp.com/).
 
 ## Installation Steps for Localhost Setup
 
@@ -21,6 +23,12 @@ python manage.py runserver
 ```
 
 ## Features of the Application
+
+### Landing Page
+
+Users are greeted with a landing page where they can register or login to the application.
+
+![landing](/assets/landing.jpeg)
 
 ### Login/Register functionality
 
@@ -46,7 +54,23 @@ Users can enter the article title and target language from a given set of Indian
 
 ![annotate](/assets/annotate.jpeg)
 
-## Remaining Work Todo
+### Role Based Project Access
 
-- Make the frontend UI for the annotation more user friendly with proper side-by-side translation boxes
-- Creating role-based access for projects
+Normal users of the application do not have the option to create a new project. This feature is available only to the staff members of the application. The staff member allocation is handled by Django Groups. These staff members can then access the Django Admin Console to assign projects to certain users.
+
+![role-based-access](/assets/role-based-access.png)
+
+## Edge Case Handling
+
+The following edge cases have been identified and handled:
+
+1. Invalid Article Title
+2. Duplicate Usernames
+3. Password and Password confirmation fields not matching
+
+## Remaining Work
+
+The following work can still be done to improve the application
+
+- Update the header navbar to include additional functionality
+- Add a footer to include relevant links and sitemap
