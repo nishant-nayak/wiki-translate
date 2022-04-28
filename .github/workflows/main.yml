@@ -20,11 +20,10 @@ jobs:
           target_branch: heroku
           github_token: ${{ github.token }}
 
-      - name: Heroku Action
-        uses: CDNievas/heroku-action@v1.0
+      - name: Git deploy to Heroku
+        uses: onekiloparsec/heroku-node-deploy-subfolder@v1.1.0
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "wikitranslate-nishant"
-          heroku_email: "nishantnayak2001@gmail.com"
+          api_key: ${{ secrets.HEROKU_API_KEY }}
+          app_name: "wikitranslate-nishant"
+          email: "nishantnayak2001@gmail.com"
           branch: "heroku"
-          procfile: "web: gunicorn wikitranslate.wsgi"
