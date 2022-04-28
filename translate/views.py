@@ -34,9 +34,6 @@ def input_title(request):
     })
 
 def register_user(request):
-    '''
-    View to register a single user. Accepts GET and POST requests.
-    '''
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('dashboard'))
     if request.method == 'POST':
