@@ -22,7 +22,7 @@ jobs:
           target_branch: heroku
           github_token: ${{ github.token }}
 
-      - name: Heroku Deployment
+      - name: Heroku Login
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -30,6 +30,7 @@ jobs:
           heroku_email: "nishantnayak2001@gmail.com"
           justlogin: true
 
-      - name: Check
+      - name: Heroku Deployment
         run: |
-          git remote show
+          heroku git:remote -a wikitranslate-nishant
+          git push heroku heroku:main -f
