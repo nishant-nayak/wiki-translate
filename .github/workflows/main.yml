@@ -1,19 +1,22 @@
-name: Deploy to Heroku
+name: Heroku Continuous Deployment
 
+# Action runs on every push to main branch
 on:
   push:
     branches: main
 
 jobs:
   build:
-    name: "Deploy app to Heroku"
+    name: "Deploy App to Heroku"
     runs-on: ubuntu-latest
     steps:
+      # Checkout the entire repository
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      # Merge the changes from main branch into heroku branch
       - name: Merge 'main' into 'heroku'
         uses: devmasx/merge-branch@1.4.0
         with:
@@ -22,6 +25,7 @@ jobs:
           target_branch: heroku
           github_token: ${{ github.token }}
 
+      # Login to Heroku CLI using API Key
       - name: Heroku Login
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
@@ -30,9 +34,13 @@ jobs:
           heroku_email: "nishantnayak2001@gmail.com"
           justlogin: true
 
+      # Run Heroku Deployment commands
       - name: Heroku Deployment
         run: |
           heroku git:remote -a wikitranslate-nishant
-          git branch -a
           git checkout heroku
-          git push heroku heroku:main
+          git push heroku heroku:main -f
+
+      # Run Database migrations, if any
+      - name: Run DB Migrations
+        run: heroku run python3 manage.py migrate
