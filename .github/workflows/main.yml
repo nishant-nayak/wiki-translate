@@ -23,8 +23,13 @@ jobs:
           github_token: ${{ github.token }}
 
       - name: Heroku Deployment
-        uses: ElayGelbart/Heroku-Auto-Deployment@v1.0.6
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          herokuApiKey: ${{ secrets.HEROKU_API_KEY }}
-          herokuAppName: "wikitranslate-nishant"
-          branch: "heroku"
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "wikitranslate-nishant"
+          heroku_email: "nishantnayak2001@gmail.com"
+          justlogin: true
+
+      - name: Check
+        run: |
+          git remote show
