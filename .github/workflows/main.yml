@@ -27,4 +27,5 @@ jobs:
           heroku_app_name: "wikitranslate-nishant"
           heroku_email: "nishantnayak2001@gmail.com"
           branch: "heroku"
+          remote_branch: "master"
           procfile: "web: gunicorn wikitranslate.wsgi"
