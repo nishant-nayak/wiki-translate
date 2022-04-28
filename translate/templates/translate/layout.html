@@ -27,7 +27,9 @@
   </head>
 
   <body>
-    {% comment %} TODO: Make Header {% include 'translate/header.html' %} {% endcomment %}
+    {% if user.is_authenticated %}
+      {% include 'translate/header.html' %}
+    {% endif %}
 
     {% block body %}
 

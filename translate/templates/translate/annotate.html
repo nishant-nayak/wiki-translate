@@ -3,6 +3,14 @@
 {% block body %}
 <div class="text-center display-2 my-5">{{ project.title }} - English to {{ target_lang }}</div>
 <div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6 text-center">
+            <h2 class="fs-2">Original Text</h4>
+        </div>
+        <div class="col-md-6 text-center">
+            <h2 class="fs-2">Translated Text</h4>
+        </div>
+    </div>
     <form id="annotate-form" action="{% url 'annotate' project.id %}" method="post" class="gx-3">
         {% csrf_token %}
         {% for sentence in sentences %}
