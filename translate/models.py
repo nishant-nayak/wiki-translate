@@ -10,7 +10,7 @@ class User(AbstractUser):
     '''
     User Model, stores information on all personnel
     '''
-    pass
+    accessible_projects = models.ManyToManyField('Project', blank=True)
 
 class Project(models.Model):
     '''
@@ -35,6 +35,7 @@ class Project(models.Model):
     title = models.TextField(verbose_name="Wikipedia Article Title")
     creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Project Creator")
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, verbose_name="Target Language")
+    time_created = models.DateTimeField(auto_now_add=True, verbose_name="Time Created")
 
 class Sentence(models.Model):
     '''

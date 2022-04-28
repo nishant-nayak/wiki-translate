@@ -40,3 +40,7 @@ jobs:
           heroku git:remote -a wikitranslate-nishant
           git checkout heroku
           git push heroku heroku:main -f
+
+      # Run Database migrations, if any
+      - name: Run DB Migrations
+        run: heroku run python3 manage.py migrate
