@@ -1,6 +1,6 @@
 Django==4.1.9
 django-environ==0.4.5
 mysqlclient==2.1.0
-sqlparse==0.4.2
+sqlparse==0.4.4
 wikipedia-api==0.5.4
 pysbd==0.3.4
